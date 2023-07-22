@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuru Kuru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .animate {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body id="main" class="">
+    <div class="h-screen w-full fixed top-0 left-0">
+        <div class="h-screen w-full fixed top-0 left-0 overflow-hidden">
+            <img src="./bg.jpg" alt="bg" class="w-full h-full object-cover object-center">
+        </div>
+        <div class="fixed py-10 bottom-0 left-0 w-full py-1 px-4 grid place-items-center">
+            <button id="start" class="bg-blue-500 py-1 px-4 text-white bg-cayn-500 text-2xl inline-block">
+                KURU KURU KURURIN
+            </button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const init = () => {
+            var sound = new Howl({
+                src: ['audio.mp3'],
+                volume: 0.5,
+            });
+            document.getElementById("start").addEventListener("click", () => {
+                sound.play();
+                createelement();
+            });
+        }
+        window.addEventListener("load", () => {
+            init();
+        });
+
+        const createelement = () => {
+            const parentDiv = document.createElement('div');
+
+            parentDiv.classList.add('w-96', 'fixed', 'bottom-0', 'right-0', "translate-x-[100%]", "transition-all", "duration-[2500ms]");
+
+            const imgElement = document.createElement('img');
+            imgElement.setAttribute('src', './main.gif');
+            imgElement.setAttribute('alt', 'main');
+            imgElement.classList.add('w-full', 'h-auto');
+
+            parentDiv.appendChild(imgElement);
+            document.getElementById("main").appendChild(parentDiv);
+            setTimeout(() => {
+                parentDiv.classList.remove('translate-x-[100%]');
+                parentDiv.classList.add(`-translate-x-[${width}px]`);
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>
